@@ -7,7 +7,7 @@
 
 %define	name    farsight2
 %define	version 0.0.4
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
