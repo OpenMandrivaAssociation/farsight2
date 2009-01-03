@@ -6,8 +6,8 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.4
-%define	release %mkrel 2
+%define	version 0.0.6
+%define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
@@ -23,7 +23,8 @@ BuildRequires:  libgstreamer-plugins-base-devel
 BuildRequires:  gupnp-devel
 BuildRequires:	nice-devel
 BuildRequires:	gstreamer0.10-python-devel
-
+Requires:	gstreamer0.10-farsight
+Requires:	gstreamer0.10-plugins-good
 
 %description
 FarSight2 is an audio/video conferencing framework 
@@ -41,7 +42,7 @@ also be a default GUI for those who don't wish to embed the feeds
 into their Instant Messenger's GUI.
 
 %package -n %{libname}
-Summary:	Sophia-sip library
+Summary:	Farsight2 library
 Group:		System/Libraries
 Provides: 	%{name} = %{version}-%{release}
 Requires:	%{name} >= %version
@@ -71,7 +72,7 @@ Headers of %{name} for development.
 %setup -q 
 
 %build
-./autogen.sh
+#./autogen.sh
 %configure2_5x
 %make
 
@@ -104,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -n gstreamer0.10-%{name}
 %defattr(-,root,root)
 %{_libdir}/gstreamer-0.10/*.so
-%{py_platsitedir}/farsight.so
+%{python_sitearch}/farsight.so
 
 %files -n %{develname}
 %defattr(-,root,root)
