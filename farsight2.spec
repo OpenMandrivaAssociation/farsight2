@@ -6,7 +6,7 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.6
+%define	version 0.0.7
 %define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
@@ -25,6 +25,7 @@ BuildRequires:	nice-devel
 BuildRequires:	gstreamer0.10-python-devel
 Requires:	gstreamer0.10-farsight
 Requires:	gstreamer0.10-plugins-good
+
 
 %description
 FarSight2 is an audio/video conferencing framework 
@@ -50,7 +51,7 @@ Requires:	%{name} >= %version
 %description -n %{libname}
 Library for %{name}
 
-%package -n gstreamer0.10-%{name}
+%package -n	gstreamer0.10-%{name}
 Summary:	Set of plugins for Gstreamer used Audio/Video conferencing
 Group:		Sound
 Requires:	%{libname} >= %version
@@ -58,6 +59,14 @@ Requires:	%{libname} >= %version
 %description -n gstreamer0.10-%{name}
 This is a set of plugins for Gstreamer that will be used by Farsight2
  for Audio/Video conferencing.
+
+%package -n   	python-%{name}
+Summary:	Python binding for %{name}
+Group:		Development/Python
+Requires:	%{name} = %{version}-%{release}
+
+%description -n	python-%{name}
+Python bindings for %{name}.
 
 %package -n %{develname}
 Summary:	Headers of %name for development
@@ -107,6 +116,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-0.10/*.so
 %{python_sitearch}/farsight.so
 
+%files -n python-%{name}
+%defattr(-,root,root,-)
+%{python_sitearch}/farsight.so
+%{python_sitearch}/farsight.a
+%{python_sitearch}/farsight.la
+
 %files -n %{develname}
 %defattr(-,root,root)
 %doc ChangeLog
@@ -127,8 +142,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-0.10/libfsrtpconference.la
 %{_libdir}/gstreamer-0.10/libfsvideoanyrate.a
 %{_libdir}/gstreamer-0.10/libfsvideoanyrate.la
-%{py_platsitedir}/farsight.a
-%{py_platsitedir}/farsight.la
 %{_datadir}/gtk-doc/html/%{name}-libs-%{api}/*
 %{_datadir}/gtk-doc/html/%{name}-plugins-%{api}/*
 
