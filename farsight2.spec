@@ -6,7 +6,7 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.7
+%define	version 0.0.8
 %define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
@@ -20,7 +20,7 @@ Source0:  	http://farsight.freedesktop.org/releases/farsight2/%{name}-%{version}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  gtk-doc
 BuildRequires:  libgstreamer-plugins-base-devel
-BuildRequires:  gupnp-devel
+BuildRequires:  gupnp-igd-devel 
 BuildRequires:	nice-devel
 BuildRequires:	gstreamer0.10-python-devel
 Requires:	gstreamer0.10-farsight
@@ -81,18 +81,17 @@ Headers of %{name} for development.
 %setup -q 
 
 %build
-#./autogen.sh
 %configure2_5x
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 %{makeinstall_std}
 
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 
 %if %mdkversion < 200900
@@ -140,6 +139,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/gstreamer-0.10/libfsfunnel.la
 %{_libdir}/gstreamer-0.10/libfsrtpconference.a
 %{_libdir}/gstreamer-0.10/libfsrtpconference.la
+%{_libdir}/gstreamer-0.10/libfsrtcpfilter.a
+%{_libdir}/gstreamer-0.10/libfsrtcpfilter.la
 %{_libdir}/gstreamer-0.10/libfsvideoanyrate.a
 %{_libdir}/gstreamer-0.10/libfsvideoanyrate.la
 %{_datadir}/gtk-doc/html/%{name}-libs-%{api}/*
