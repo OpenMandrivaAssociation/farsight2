@@ -7,7 +7,7 @@
 
 %define	name    farsight2
 %define	version 0.0.8
-%define	release %mkrel 1
+%define	release %mkrel 3
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
@@ -16,7 +16,8 @@ Release:	%{release}
 License:	LGPLv2+
 URL:		http://farsight.sourceforge.net/	
 Group:		Networking/Instant messaging
-Source0:  	http://farsight.freedesktop.org/releases/farsight2/%{name}-%{version}.tar.gz	
+Source0:  	http://farsight.freedesktop.org/releases/farsight2/%{name}-%{version}.tar.gz
+Patch0:		farsight-0.0.8-use-with-gst-bad.patch	
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  gtk-doc
 BuildRequires:  libgstreamer-plugins-base-devel
@@ -78,7 +79,8 @@ Provides:	%{name}-devel = %{version}-%{release}
 Headers of %{name} for development.
 
 %prep
-%setup -q 
+%setup -q
+%patch0 -p1
 
 %build
 %configure2_5x
