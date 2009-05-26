@@ -6,7 +6,7 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.9
+%define	version 0.0.11
 %define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
@@ -21,7 +21,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  gtk-doc
 BuildRequires:  libgstreamer-plugins-base-devel
 BuildRequires:  gupnp-igd-devel 
-BuildRequires:	nice-devel
+BuildRequires:	nice-devel >= 0.0.6
 BuildRequires:	gstreamer0.10-python-devel
 Requires:	gstreamer0.10-farsight
 Requires:	gstreamer0.10-plugins-good
