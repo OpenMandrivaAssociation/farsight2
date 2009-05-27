@@ -23,6 +23,7 @@ BuildRequires:  libgstreamer-plugins-base-devel
 BuildRequires:  gupnp-igd-devel 
 BuildRequires:	nice-devel >= 0.0.6
 BuildRequires:	gstreamer0.10-python-devel
+BuildRequires:	python-devel
 Requires:	gstreamer0.10-farsight
 Requires:	gstreamer0.10-plugins-good
 
