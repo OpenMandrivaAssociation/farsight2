@@ -6,7 +6,7 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.11
+%define	version 0.0.12
 %define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
