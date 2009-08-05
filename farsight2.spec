@@ -6,8 +6,8 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.12
-%define	release %mkrel 2
+%define	version 0.0.14
+%define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
@@ -144,6 +144,8 @@ rm -rf %{buildroot}
 %{_libdir}/gstreamer-0.10/libfsrtcpfilter.la
 %{_libdir}/gstreamer-0.10/libfsvideoanyrate.a
 %{_libdir}/gstreamer-0.10/libfsvideoanyrate.la
+%{_libdir}/gstreamer-0.10/libfsmsnconference.a
+%{_libdir}/gstreamer-0.10/libfsmsnconference.la
 %{_datadir}/gtk-doc/html/%{name}-libs-%{api}/*
 %{_datadir}/gtk-doc/html/%{name}-plugins-%{api}/*
 
