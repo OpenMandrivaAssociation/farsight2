@@ -7,7 +7,7 @@
 
 %define	name    farsight2
 %define	version 0.0.15
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
@@ -24,8 +24,6 @@ BuildRequires:  gupnp-igd-devel
 BuildRequires:	nice-devel >= 0.0.6
 BuildRequires:	gstreamer0.10-python-devel
 BuildRequires:	python-devel
-Requires:	gstreamer0.10-farsight
-Requires:	gstreamer0.10-plugins-good
 
 
 %description
@@ -56,6 +54,9 @@ Library for %{name}
 Summary:	Set of plugins for Gstreamer used Audio/Video conferencing
 Group:		Sound
 Requires:	%{libname} >= %version
+Requires:	gstreamer0.10-plugins-good
+# can not hard requires packages from contrib
+Suggests:	gstreamer0.10-voip
 
 %description -n gstreamer0.10-%{name}
 This is a set of plugins for Gstreamer that will be used by Farsight2
@@ -114,7 +115,6 @@ rm -rf %{buildroot}
 %files -n gstreamer0.10-%{name}
 %defattr(-,root,root)
 %{_libdir}/gstreamer-0.10/*.so
-%{python_sitearch}/farsight.so
 
 %files -n python-%{name}
 %defattr(-,root,root,-)
