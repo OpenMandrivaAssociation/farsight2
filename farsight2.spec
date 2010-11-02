@@ -6,7 +6,7 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.21
+%define	version 0.0.22
 %define	release %mkrel 1
 
 Summary:	An audio/video conferencing framework
@@ -83,7 +83,7 @@ Headers of %{name} for development.
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x --disable-static
 %make
 
 %install
@@ -91,6 +91,7 @@ rm -rf %{buildroot}
 
 %{makeinstall_std}
 
+find %{buildroot} -name *.la | xargs rm
 
 %clean
 rm -rf %{buildroot}
@@ -104,13 +105,10 @@ rm -rf %{buildroot}
 %postun -n %{libname} -p /sbin/ldconfig
 %endif
 
-
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libgstfarsight-%{api}.so.%{major}*
-%{_libdir}/%{name}-0.0/librawudp-transmitter.so
-%{_libdir}/%{name}-0.0/libnice-transmitter.so
-%{_libdir}/%{name}-0.0/libmulticast-transmitter.so
+%{_libdir}/%{name}-0.0/*.so
 
 %files -n gstreamer0.10-%{name}
 %defattr(-,root,root)
@@ -119,35 +117,12 @@ rm -rf %{buildroot}
 %files -n python-%{name}
 %defattr(-,root,root,-)
 %{python_sitearch}/farsight.so
-%{python_sitearch}/farsight.a
-%{python_sitearch}/farsight.la
 
 %files -n %{develname}
 %defattr(-,root,root)
 %doc ChangeLog
 %{_includedir}/gstreamer-0.10/gst/farsight/*.h
 %{_libdir}/pkgconfig/%{name}-%{api}.pc
-%{_libdir}/libgstfarsight-%{api}.a
-%{_libdir}/libgstfarsight-%{api}.la
 %{_libdir}/libgstfarsight-%{api}.so
-%{_libdir}/%{name}-0.0/librawudp-transmitter.a
-%{_libdir}/%{name}-0.0/librawudp-transmitter.la
-%{_libdir}/%{name}-0.0/libnice-transmitter.a
-%{_libdir}/%{name}-0.0/libnice-transmitter.la
-%{_libdir}/%{name}-0.0/libmulticast-transmitter.a
-%{_libdir}/%{name}-0.0/libmulticast-transmitter.la
-%{_libdir}/gstreamer-0.10/libfsfunnel.a
-%{_libdir}/gstreamer-0.10/libfsfunnel.la
-%{_libdir}/gstreamer-0.10/libfsrtpconference.a
-%{_libdir}/gstreamer-0.10/libfsrtpconference.la
-%{_libdir}/gstreamer-0.10/libfsrtcpfilter.a
-%{_libdir}/gstreamer-0.10/libfsrtcpfilter.la
-%{_libdir}/gstreamer-0.10/libfsvideoanyrate.a
-%{_libdir}/gstreamer-0.10/libfsvideoanyrate.la
-%{_libdir}/gstreamer-0.10/libfsmsnconference.a
-%{_libdir}/gstreamer-0.10/libfsmsnconference.la
 %{_datadir}/gtk-doc/html/%{name}-libs-%{api}/*
 %{_datadir}/gtk-doc/html/%{name}-plugins-%{api}/*
-
-
-
