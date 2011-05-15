@@ -6,8 +6,10 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.22
-%define	release %mkrel 2
+%define	version 0.0.28
+%define	release %mkrel 1
+
+%define nicever 0.1.0
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
@@ -21,7 +23,7 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  gtk-doc
 BuildRequires:  libgstreamer-plugins-base-devel
 BuildRequires:  gupnp-igd-devel 
-BuildRequires:	nice-devel >= 0.0.6
+BuildRequires:	nice-devel >= %nicever
 BuildRequires:	gstreamer0.10-python-devel
 BuildRequires:	python-devel
 
@@ -55,6 +57,7 @@ Summary:	Set of plugins for Gstreamer used Audio/Video conferencing
 Group:		Sound
 Requires:	%{libname} >= %version
 Requires:	gstreamer0.10-plugins-good
+Requires:	gstreamer0.10-libnice >= %nicever
 # can not hard requires packages from contrib
 Suggests:	gstreamer0.10-voip
 
@@ -96,19 +99,12 @@ find %{buildroot} -name *.la | xargs rm
 %clean
 rm -rf %{buildroot}
 
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
 %files -n %{libname}
 %defattr(-,root,root)
 %{_libdir}/libgstfarsight-%{api}.so.%{major}*
 %{_libdir}/%{name}-0.0/*.so
+%dir %_datadir/farsight2
+%_datadir/farsight2/0.0
 
 %files -n gstreamer0.10-%{name}
 %defattr(-,root,root)
