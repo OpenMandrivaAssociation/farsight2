@@ -6,7 +6,7 @@
 %define version_lib %{api}-%{major}
 
 %define	name    farsight2
-%define	version 0.0.28
+%define	version 0.0.29
 %define	release %mkrel 1
 
 %define nicever 0.1.0
