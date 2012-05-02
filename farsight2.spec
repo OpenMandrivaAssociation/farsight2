@@ -1,29 +1,24 @@
-%define api 0.10
-%define major 0
-%define libname %mklibname %{name}_%{version_lib}
-%define develname %mklibname -d %{name}
+%define api		0.10
+%define major		0
+%define libname		%mklibname %{name}_%{version_lib}
+%define develname	%mklibname -d %{name}
 
 %define version_lib %{api}-%{major}
 
-%define	name    farsight2
-%define	version 0.0.29
-%define	release %mkrel 2
-
 Summary:	An audio/video conferencing framework
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		farsight2
+Version:	0.0.31
+Release:	1
 License:	LGPLv2+
-URL:		http://farsight.sourceforge.net/	
+URL:		http://farsight.freedesktop.org/wiki/	
 Group:		Networking/Instant messaging
-Source0:  	http://farsight.freedesktop.org/releases/farsight2/%{name}-%{version}.tar.gz
+Source0:  	http://farsight.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:  gtk-doc
-BuildRequires:  libgstreamer-plugins-base-devel
+BuildRequires:  libgstreamer-plugins-base-devel >= 0.10.33
 BuildRequires:  gupnp-igd-devel 
-BuildRequires:	nice-devel
+BuildRequires:	nice-devel >= 0.1.0
 BuildRequires:	gstreamer0.10-python-devel
 BuildRequires:	python-devel
-
 
 %description
 FarSight2 is an audio/video conferencing framework 
@@ -44,7 +39,6 @@ into their Instant Messenger's GUI.
 Summary:	Farsight2 library
 Group:		System/Libraries
 Provides: 	%{name} = %{version}-%{release}
-Requires:	%{name} >= %version
 
 %description -n %{libname}
 Library for %{name}
@@ -52,15 +46,15 @@ Library for %{name}
 %package -n	gstreamer0.10-%{name}
 Summary:	Set of plugins for Gstreamer used Audio/Video conferencing
 Group:		Sound
-Requires:	%{libname} >= %version
+Requires:	%{libname} = %{version}-%{release}
 Requires:	gstreamer0.10-plugins-good
-Requires:	gstreamer0.10-libnice
-# can not hard requires packages from contrib
-Suggests:	gstreamer0.10-voip
+Requires:	gstreamer0.10-nice >= 0.1.0
+Requires:	gstreamer0.10-voip
+Conflicts:	gstreamer0.10-farstream >= 0.1.1
 
 %description -n gstreamer0.10-%{name}
 This is a set of plugins for Gstreamer that will be used by Farsight2
- for Audio/Video conferencing.
+for Audio/Video conferencing.
 
 %package -n   	python-%{name}
 Summary:	Python binding for %{name}
@@ -73,7 +67,7 @@ Python bindings for %{name}.
 %package -n %{develname}
 Summary:	Headers of %name for development
 Group:		Development/C
-Requires:	%{libname} = %{version}
+Requires:	%{libname} = %{version}-%{release}
 Provides:	%{name}-devel = %{version}-%{release}
 
 %description -n %{develname}
@@ -83,23 +77,27 @@ Headers of %{name} for development.
 %setup -q
 
 %build
-%configure2_5x --disable-static
+%configure2_5x \
+	--disable-static \
+	--with-package-name="%{_vendor} %{name}" \
+	--with-package-origin="http://www.mandriva.com"
 %make
 
 %install
+rm -rf %{buildroot}
 
 %{makeinstall_std}
 
-find %{buildroot} -name *.la | xargs rm
+find %{buildroot} -name '*.la' | xargs rm
 
 %files -n %{libname}
 %{_libdir}/libgstfarsight-%{api}.so.%{major}*
 %{_libdir}/%{name}-0.0/*.so
-%dir %_datadir/farsight2
-%_datadir/farsight2/0.0
 
 %files -n gstreamer0.10-%{name}
 %{_libdir}/gstreamer-0.10/*.so
+%{_datadir}/farsight2/0.0/fsrtpconference/default-codec-preferences
+%{_datadir}/farsight2/0.0/fsrtpconference/default-element-properties
 
 %files -n python-%{name}
 %{python_sitearch}/farsight.so
