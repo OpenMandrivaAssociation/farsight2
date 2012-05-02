@@ -9,8 +9,6 @@
 %define	version 0.0.29
 %define	release %mkrel 1
 
-%define nicever 0.1.0
-
 Summary:	An audio/video conferencing framework
 Name:		%{name}
 Version:	%{version}
@@ -19,11 +17,10 @@ License:	LGPLv2+
 URL:		http://farsight.sourceforge.net/	
 Group:		Networking/Instant messaging
 Source0:  	http://farsight.freedesktop.org/releases/farsight2/%{name}-%{version}.tar.gz
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires:  gtk-doc
 BuildRequires:  libgstreamer-plugins-base-devel
 BuildRequires:  gupnp-igd-devel 
-BuildRequires:	nice-devel >= %nicever
+BuildRequires:	nice-devel
 BuildRequires:	gstreamer0.10-python-devel
 BuildRequires:	python-devel
 
@@ -90,32 +87,24 @@ Headers of %{name} for development.
 %make
 
 %install
-rm -rf %{buildroot}
 
 %{makeinstall_std}
 
 find %{buildroot} -name *.la | xargs rm
 
-%clean
-rm -rf %{buildroot}
-
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/libgstfarsight-%{api}.so.%{major}*
 %{_libdir}/%{name}-0.0/*.so
 %dir %_datadir/farsight2
 %_datadir/farsight2/0.0
 
 %files -n gstreamer0.10-%{name}
-%defattr(-,root,root)
 %{_libdir}/gstreamer-0.10/*.so
 
 %files -n python-%{name}
-%defattr(-,root,root,-)
 %{python_sitearch}/farsight.so
 
 %files -n %{develname}
-%defattr(-,root,root)
 %doc ChangeLog
 %{_includedir}/gstreamer-0.10/gst/farsight/*.h
 %{_libdir}/pkgconfig/%{name}-%{api}.pc
