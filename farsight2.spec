@@ -7,7 +7,7 @@
 
 %define	name    farsight2
 %define	version 0.0.29
-%define	release %mkrel 1
+%define	release %mkrel 2
 
 Summary:	An audio/video conferencing framework
 Name:		%{name}
@@ -54,7 +54,7 @@ Summary:	Set of plugins for Gstreamer used Audio/Video conferencing
 Group:		Sound
 Requires:	%{libname} >= %version
 Requires:	gstreamer0.10-plugins-good
-Requires:	gstreamer0.10-libnice >= %nicever
+Requires:	gstreamer0.10-libnice
 # can not hard requires packages from contrib
 Suggests:	gstreamer0.10-voip
 
