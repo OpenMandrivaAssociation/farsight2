@@ -8,7 +8,7 @@
 Summary:	An audio/video conferencing framework
 Name:		farsight2
 Version:	0.0.31
-Release:	1
+Release:	2
 License:	LGPLv2+
 URL:		http://farsight.freedesktop.org/wiki/	
 Group:		Networking/Instant messaging
@@ -84,8 +84,6 @@ Headers of %{name} for development.
 %make
 
 %install
-rm -rf %{buildroot}
-
 %{makeinstall_std}
 
 find %{buildroot} -name '*.la' | xargs rm
