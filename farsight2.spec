@@ -5,20 +5,20 @@
 
 %define version_lib %{api}-%{major}
 
-Summary:	An audio/video conferencing framework
+Summary:		An audio/video conferencing framework
 Name:		farsight2
-Version:	0.0.31
-Release:	2
-License:	LGPLv2+
+Version:		0.0.31
+Release:		2
+License:		LGPLv2+
 URL:		http://farsight.freedesktop.org/wiki/	
 Group:		Networking/Instant messaging
 Source0:  	http://farsight.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
-BuildRequires:  gtk-doc
-BuildRequires:  libgstreamer-plugins-base-devel >= 0.10.33
-BuildRequires:  gupnp-igd-devel 
-BuildRequires:	nice-devel >= 0.1.0
-BuildRequires:	gstreamer0.10-python-devel
-BuildRequires:	python-devel
+BuildRequires:	gtk-doc
+BuildRequires:	pkgconfig(gstreamer-app-0.10) >= 0.10.33
+BuildRequires:	pkgconfig(gupnp-igd-1.0)
+BuildRequires:	pkgconfig(nice) >= 0.1.0
+BuildRequires:	pkgconfig(gst-python-0.10)
+BuildRequires:	pkgconfig(python)
 
 %description
 FarSight2 is an audio/video conferencing framework 
@@ -107,3 +107,113 @@ find %{buildroot} -name '*.la' | xargs rm
 %{_libdir}/libgstfarsight-%{api}.so
 %{_datadir}/gtk-doc/html/%{name}-libs-%{api}/*
 %{_datadir}/gtk-doc/html/%{name}-plugins-%{api}/*
+
+
+%changelog
+* Thu May 03 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.0.31-2
++ Revision: 795347
+- rel bump and rebuild
+
+* Wed May 02 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.0.31-1
++ Revision: 795074
+- version update 0.0.31
+
+* Wed May 02 2012 Alexander Khrukin <akhrukin@mandriva.org> 0.0.29-2
++ Revision: 795072
+- rebuild for new libnice
+- rebuild for new libnice
+
+* Thu Jun 16 2011 Götz Waschk <waschk@mandriva.org> 0.0.29-1
++ Revision: 685503
+- update to new version 0.0.29
+
+* Sun May 15 2011 Götz Waschk <waschk@mandriva.org> 0.0.28-1
++ Revision: 674963
+- new version
+- update file list
+- bump nice dep
+
+* Tue May 03 2011 Oden Eriksson <oeriksson@mandriva.com> 0.0.22-2
++ Revision: 664264
+- mass rebuild
+
+* Tue Nov 02 2010 Funda Wang <fwang@mandriva.org> 0.0.22-1mdv2011.0
++ Revision: 592277
+- new version 0.0.22
+
+* Fri Jul 23 2010 Jani Välimaa <wally@mandriva.org> 0.0.21-1mdv2011.0
++ Revision: 557316
+- new version 0.0.21
+
+* Thu Jan 07 2010 Jani Välimaa <wally@mandriva.org> 0.0.17-2mdv2010.1
++ Revision: 487208
+- rebuild for new gupnp-igd
+
+* Wed Jan 06 2010 Frederik Himpe <fhimpe@mandriva.org> 0.0.17-1mdv2010.1
++ Revision: 486867
+- update to new version 0.0.17
+
+* Sat Nov 07 2009 Frederik Himpe <fhimpe@mandriva.org> 0.0.16-1mdv2010.1
++ Revision: 462617
+- update to new version 0.0.16
+
+* Tue Sep 22 2009 Frederic Crozat <fcrozat@mandriva.com> 0.0.15-2mdv2010.0
++ Revision: 447363
+- Ensure gstreamer subpackage suggests gstreamer0.10-voip package
+- remove python module from gstreamer package
+- Add plugins-good as requirement of gstreamer package
+
+* Mon Sep 07 2009 Emmanuel Andry <eandry@mandriva.org> 0.0.15-1mdv2010.0
++ Revision: 432543
+- New version 0.0.15
+
+* Wed Aug 05 2009 Frederik Himpe <fhimpe@mandriva.org> 0.0.14-1mdv2010.0
++ Revision: 410389
+- Update to new version 0.0.14
+
+* Sun Jun 21 2009 Frederik Himpe <fhimpe@mandriva.org> 0.0.12-2mdv2010.0
++ Revision: 387852
+- Rebuild for new libgupnp-igd2
+
+* Fri May 29 2009 Frederik Himpe <fhimpe@mandriva.org> 0.0.12-1mdv2010.0
++ Revision: 381157
+- update to new version 0.0.12
+
+* Wed May 27 2009 Frederik Himpe <fhimpe@mandriva.org> 0.0.11-1mdv2010.0
++ Revision: 380278
+- Add BuildRequires: python-devel
+- Update to new version 0.0.11
+
+* Fri May 08 2009 Frederik Himpe <fhimpe@mandriva.org> 0.0.9-1mdv2010.0
++ Revision: 373490
+- Update to new version 0.0.9
+- Remove patch included upstream
+
+* Mon Mar 23 2009 Emmanuel Andry <eandry@mandriva.org> 0.0.8-3mdv2009.1
++ Revision: 360746
+- diff patch from git to fix compatibility issues with latest gst-plugins-farsight
+
+* Tue Mar 17 2009 Emmanuel Andry <eandry@mandriva.org> 0.0.8-1mdv2009.1
++ Revision: 356333
+- New version 0.0.8
+- fix BR
+- update files list
+
+* Thu Jan 22 2009 Emmanuel Andry <eandry@mandriva.org> 0.0.7-1mdv2009.1
++ Revision: 332670
+- New version 0.0.7
+- create python package
+
+* Sat Jan 03 2009 Emmanuel Andry <eandry@mandriva.org> 0.0.6-1mdv2009.1
++ Revision: 323994
+- New version
+- fix library summary
+
+* Sun Dec 28 2008 Funda Wang <fwang@mandriva.org> 0.0.4-2mdv2009.1
++ Revision: 320292
+- rebuild for new python
+
+* Sun Nov 30 2008 Emmanuel Andry <eandry@mandriva.org> 0.0.4-1mdv2009.1
++ Revision: 308519
+- import farsight2
+
