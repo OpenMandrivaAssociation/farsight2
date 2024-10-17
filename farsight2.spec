@@ -10,7 +10,7 @@ Name:		farsight2
 Version:		0.0.31
 Release:		2
 License:		LGPLv2+
-URL:		http://farsight.freedesktop.org/wiki/	
+URL:		https://farsight.freedesktop.org/wiki/	
 Group:		Networking/Instant messaging
 Source0:  	http://farsight.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
 BuildRequires:	gtk-doc
