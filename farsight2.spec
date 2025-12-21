@@ -13,6 +13,11 @@ License:		LGPLv2+
 URL:		https://farsight.freedesktop.org/wiki/	
 Group:		Networking/Instant messaging
 Source0:  	http://farsight.freedesktop.org/releases/%{name}/%{name}-%{version}.tar.gz
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	gtk-doc
 BuildRequires:	pkgconfig(gstreamer-app-0.10) >= 0.10.33
 BuildRequires:	pkgconfig(gupnp-igd-1.0)
